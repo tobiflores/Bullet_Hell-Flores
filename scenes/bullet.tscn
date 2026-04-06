@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://bkanrc3sfxoun"]
+
+[ext_resource type="Script" uid="uid://bflwnwttpblyo" path="res://scripts/bullet.gd" id="1_v8qja"]
+[ext_resource type="Script" uid="uid://bal6iepaepthu" path="res://scripts/enemigo.gd" id="2_t4vbm"]
+
+[node name="Node2D" type="Node2D" unique_id=379558289]
+
+[node name="Bullet" type="Area2D" parent="." unique_id=97449678]
+script = ExtResource("1_v8qja")
+
+[node name="Sprite2D" type="Sprite2D" parent="Bullet" unique_id=698960490]
+
+[node name="Hitboxd" type="CollisionShape2D" parent="Bullet" unique_id=201202213]
+
+[node name="Enemigo" type="CharacterBody2D" parent="." unique_id=1339863871]
+script = ExtResource("2_t4vbm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo" unique_id=1840481849]
+
+[node name="Sprite2D" type="Sprite2D" parent="Enemigo" unique_id=1646577832]
