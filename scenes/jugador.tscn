@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://b57oahww548u0"]
+
+[ext_resource type="Texture2D" uid="uid://c2p8njl8ltfy5" path="res://imagenes/Jugador.png" id="1_g87hm"]
+
+[node name="Jugador" type="CharacterBody2D" unique_id=1789770996 groups=["jugadores"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=164623340]
+scale = Vector2(2.1299996, 2.0600002)
+texture = ExtResource("1_g87hm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=650901554]
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=2132873071]
+offset_left = 28.0
+offset_top = 49.0
+offset_right = 101.0
+offset_bottom = 101.0

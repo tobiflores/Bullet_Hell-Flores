@@ -1,20 +1,15 @@
 [gd_scene format=3 uid="uid://bkanrc3sfxoun"]
 
-[ext_resource type="Script" uid="uid://bflwnwttpblyo" path="res://scripts/bullet.gd" id="1_v8qja"]
-[ext_resource type="Script" uid="uid://bal6iepaepthu" path="res://scripts/enemigo.gd" id="2_t4vbm"]
+[ext_resource type="Script" uid="uid://csoqthofht1bt" path="res://scripts/bullet.gd" id="1_mkf8s"]
 
-[node name="Node2D" type="Node2D" unique_id=379558289]
+[node name="Bullet" type="Area2D" unique_id=1796958808]
+script = ExtResource("1_mkf8s")
 
-[node name="Bullet" type="Area2D" parent="." unique_id=97449678]
-script = ExtResource("1_v8qja")
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=698960490]
 
-[node name="Sprite2D" type="Sprite2D" parent="Bullet" unique_id=698960490]
+[node name="Hitboxd" type="CollisionShape2D" parent="." unique_id=201202213]
 
-[node name="Hitboxd" type="CollisionShape2D" parent="Bullet" unique_id=201202213]
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=970962892]
 
-[node name="Enemigo" type="CharacterBody2D" parent="." unique_id=1339863871]
-script = ExtResource("2_t4vbm")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemigo" unique_id=1840481849]
-
-[node name="Sprite2D" type="Sprite2D" parent="Enemigo" unique_id=1646577832]
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

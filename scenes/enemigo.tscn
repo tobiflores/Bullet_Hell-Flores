@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dbbjic3ayev7a"]
+
+[ext_resource type="Script" uid="uid://efpioaausihd" path="res://scripts/enemigo.gd" id="1_7kcpm"]
+[ext_resource type="Texture2D" uid="uid://c2c81x728ecly" path="res://imagenes/enemigo.png" id="2_hlx46"]
+
+[node name="Enemigo" type="CharacterBody2D" unique_id=565316729]
+script = ExtResource("1_7kcpm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1930902100]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1755532268]
+texture = ExtResource("2_hlx46")
+
+[node name="Timer" type="Timer" parent="." unique_id=1173456770]
