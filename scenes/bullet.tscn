@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bkanrc3sfxoun"]
+
+[ext_resource type="Script" uid="uid://csoqthofht1bt" path="res://scripts/bullet.gd" id="1_mkf8s"]
+[ext_resource type="Texture2D" uid="uid://ocbxln0wh1g3" path="res://imagenes/bullet.png" id="2_y25gk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mkf8s"]
+size = Vector2(64.5, 20)
+
+[node name="Bullet" type="Area2D" unique_id=1796958808 groups=["barra_vida"]]
+script = ExtResource("1_mkf8s")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=698960490]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_y25gk")
+
+[node name="Hitboxd" type="CollisionShape2D" parent="." unique_id=201202213]
+position = Vector2(0.25, 1)
+shape = SubResource("RectangleShape2D_mkf8s")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." unique_id=970962892]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

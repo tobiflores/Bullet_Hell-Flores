@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://dbbjic3ayev7a"]
+
+[ext_resource type="Script" uid="uid://efpioaausihd" path="res://scripts/enemigo.gd" id="1_7kcpm"]
+[ext_resource type="Texture2D" uid="uid://c2c81x728ecly" path="res://imagenes/enemigo.png" id="2_hlx46"]
+
+[sub_resource type="Animation" id="Animation_hlx46"]
+resource_name = "disparar"
+length = 0.5
+tracks/0/type = "method"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot_fan"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1yqjy"]
+_data = {
+&"disparar": SubResource("Animation_hlx46")
+}
+
+[node name="Enemigo" type="CharacterBody2D" unique_id=565316729 groups=["enemigos"]]
+script = ExtResource("1_7kcpm")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="." unique_id=189771028]
+polygon = PackedVector2Array(-27, -188, -88, -92, -127, 90, 53, 90, -10, 42, 52, 90, 126, 87, 125, 53, 32, -168)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1755532268]
+texture = ExtResource("2_hlx46")
+
+[node name="Timer" type="Timer" parent="." unique_id=1173456770]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=389853088]
+libraries/ = SubResource("AnimationLibrary_1yqjy")
+
+[node name="Marker2D" type="Marker2D" parent="." unique_id=1264813776]
+position = Vector2(-72, -95)
+
+[node name="Area2D" type="Area2D" parent="." unique_id=695990247]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D" unique_id=1811788422]
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

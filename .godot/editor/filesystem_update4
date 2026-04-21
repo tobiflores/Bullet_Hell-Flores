@@ -1,0 +1,8 @@
+res://scenes/node_2d.tscn
+res://scenes/progress_bar.gd
+res://scripts/jugador.gd
+res://scripts/enemigo.gd
+res://scenes/enemigo.tscn
+res://scenes/jugador.tscn
+res://scenes/bullet.tscn
+res://scripts/bullet.gd
