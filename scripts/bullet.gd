@@ -2,7 +2,11 @@ extends Area2D
 
 @export var texture_array: Array[Texture2D]
 
+<<<<<<< HEAD
+var speed = 300
+=======
 var speed = 200
+>>>>>>> 5db119b3a352ce8a6b97023e854845729d09a638
 var direction = Vector2.RIGHT
 var tipoDeDisparo: int = 0
 var duration = 4.0

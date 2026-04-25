@@ -1,4 +1,10 @@
 res://scenes/node_2d.tscn
+<<<<<<< HEAD
+res://bullet_jugador.tscn
+res://bullet_jugador.gd
+res://scripts/jugador.gd
+res://scenes/bullet_jugador.tscn
+=======
 res://scenes/progress_bar.gd
 res://scripts/jugador.gd
 res://scripts/enemigo.gd
@@ -6,3 +12,4 @@ res://scenes/enemigo.tscn
 res://scenes/jugador.tscn
 res://scenes/bullet.tscn
 res://scripts/bullet.gd
+>>>>>>> 5db119b3a352ce8a6b97023e854845729d09a638

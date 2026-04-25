@@ -1,7 +1,17 @@
+<<<<<<< HEAD
+VisibleOnScreenNotifier2D
+VisibleOnScreenEnabler2D
+CollisionShape2D
+Sprite2D
+Area2D
+CollisionPolygon2D
+Timer
+=======
 CollisionPolygon2D
 Timer
 CollisionShape2D
 Area2D
+>>>>>>> 5db119b3a352ce8a6b97023e854845729d09a638
 ProgressBar
 Marker2D
 AnimationPlayer

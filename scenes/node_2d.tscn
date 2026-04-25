@@ -3,7 +3,11 @@
 [ext_resource type="PackedScene" uid="uid://dbbjic3ayev7a" path="res://scenes/enemigo.tscn" id="1_6e84v"]
 [ext_resource type="PackedScene" uid="uid://b57oahww548u0" path="res://scenes/jugador.tscn" id="2_rnjyy"]
 [ext_resource type="Texture2D" uid="uid://c1k33513lyjbq" path="res://imagenes/grass_pixelart.png" id="3_4vge2"]
+<<<<<<< HEAD
+[ext_resource type="Script" uid="uid://dyvy3fugq1mol" path="res://scripts/progress_bar.gd" id="4_4vge2"]
+=======
 [ext_resource type="Script" uid="uid://dyvy3fugq1mol" path="res://scenes/progress_bar.gd" id="4_4vge2"]
+>>>>>>> 5db119b3a352ce8a6b97023e854845729d09a638
 
 [node name="Node2D" type="Node2D" unique_id=379558289]
 
@@ -15,10 +19,15 @@ position = Vector2(171, 520)
 
 [node name="GrassPixelart" type="TextureRect" parent="." unique_id=1261726018]
 z_index = -2
+<<<<<<< HEAD
+offset_right = 2057.0
+offset_bottom = 1132.0
+=======
 offset_left = -1054.0
 offset_top = -850.0
 offset_right = 1178.0
 offset_bottom = 666.0
+>>>>>>> 5db119b3a352ce8a6b97023e854845729d09a638
 texture = ExtResource("3_4vge2")
 stretch_mode = 1
 
