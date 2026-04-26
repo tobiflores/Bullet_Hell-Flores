@@ -15,14 +15,11 @@ run/main_scene="uid://bi6btupiw12e1"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
-<<<<<<< HEAD
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 
-=======
->>>>>>> 5db119b3a352ce8a6b97023e854845729d09a638
 [input]
 
 ui_left={
