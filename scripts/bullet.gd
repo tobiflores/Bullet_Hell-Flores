@@ -8,9 +8,13 @@ var duration = 4.0
 
 func _process(delta):
 	position += direction * speed * delta
-	duration -= delta
+	
 	if direction != Vector2.ZERO:
 		rotation = direction.angle()
+	
+	duration -= delta
+	if duration <= 0:
+		queue_free()
 
 func set_property(type):
 	tipoDeDisparo = type

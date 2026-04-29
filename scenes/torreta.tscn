@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://c2ckwq3fqj4e3"]
+
+[ext_resource type="Script" uid="uid://boxktmr3qnbhy" path="res://torreta.gd" id="1_2rk5c"]
+[ext_resource type="PackedScene" uid="uid://bkanrc3sfxoun" path="res://scenes/bullet.tscn" id="2_5hnws"]
+[ext_resource type="Texture2D" uid="uid://dom2kknx63q0c" path="res://imagenes/turret_BASE.png" id="2_gadoe"]
+[ext_resource type="Texture2D" uid="uid://dvukgw0jfnat4" path="res://imagenes/Turret.png" id="3_5hnws"]
+
+[node name="Torreta" type="Node2D" unique_id=1223889116]
+script = ExtResource("1_2rk5c")
+BULLET = ExtResource("2_5hnws")
+
+[node name="BaseSprite" type="Sprite2D" parent="." unique_id=2126740174]
+texture = ExtResource("2_gadoe")
+
+[node name="ArmaSprite" type="Sprite2D" parent="." unique_id=954273490]
+texture = ExtResource("3_5hnws")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=990639415]
+
+[node name="Recarga" type="Timer" parent="RayCast2D" unique_id=406290498]
+wait_time = 4.2

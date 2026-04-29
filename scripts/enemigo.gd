@@ -1,5 +1,6 @@
 extends CharacterBody2D
 const BULLET_SCENE = preload("res://scenes/bullet.tscn")
+const TORRETA_SCENE = preload("res://scenes/torreta.tscn")
 const MOVE_SPEED = 90.0
 const SHOOT_INTERVAL = 0.3
 const FAN_BULLETS = 7
@@ -12,7 +13,9 @@ var balas_disparadas = 0
 var jugador = null
 var dispare = false
 var enfriamiento_circulo = false
+var torreta_spawneada = false
 var barritaEnemigo: ProgressBar
+
 var vida = 500:
 	set(value):
 		vida = value
@@ -25,12 +28,16 @@ func _ready():
 	jugador = get_tree().get_first_node_in_group("jugadores")
 	add_to_group("enemigos")
 	barritaEnemigo = get_tree().get_first_node_in_group("barra_enemigo")
-	print("encontre barrita: ", barritaEnemigo)
 	if barritaEnemigo:
 		barritaEnemigo.max_value = 500
 		barritaEnemigo.value = vida
 
+	if tipoDeBala == 1 and not torreta_spawneada:
+		spawnear_torreta(Vector2(300, 300))
+		torreta_spawneada = true
+
 func _physics_process(delta):
+	print(tipoDeBala)
 	if jugador:
 		var dir = position.direction_to(jugador.position)
 		velocity = dir * MOVE_SPEED
@@ -39,9 +46,11 @@ func _physics_process(delta):
 	if !dispare:
 		dispare = true
 		$AnimationPlayer.play("disparar")
+
 func obtener_vector(angle):
 	theta = angle
 	return Vector2(cos(theta), sin(theta))
+
 func shoot_fan():
 	if not jugador:
 		return
@@ -76,6 +85,11 @@ func disparar_circulo():
 		bala.set_property(1)
 	await get_tree().create_timer(0.7).timeout
 	enfriamiento_circulo = false
+
+func spawnear_torreta(pos):
+	var t = TORRETA_SCENE.instantiate()
+	t.global_position = pos
+	get_tree().current_scene.add_child(t)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "disparar":

@@ -26,6 +26,8 @@ func _physics_process(_delta):
 	var input_dir = Input.get_vector("laA", "laD", "laW", "laS")
 	velocity = input_dir * current_speed
 	move_and_slide()
+	position.x = clamp(position.x, 0, 2000)
+	position.y = clamp(position.y, 0, 1200)
 	var colision = get_last_slide_collision()
 	if colision:
 		var cuerpo = colision.get_collider()

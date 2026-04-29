@@ -1,12 +1,14 @@
 [gd_scene format=3 uid="uid://bi6btupiw12e1"]
 
 [ext_resource type="PackedScene" uid="uid://dbbjic3ayev7a" path="res://scenes/enemigo.tscn" id="1_6e84v"]
+[ext_resource type="Script" uid="uid://7pirsf8d6182" path="res://scenes/node_2d.gd" id="1_j7wrs"]
 [ext_resource type="PackedScene" uid="uid://b57oahww548u0" path="res://scenes/jugador.tscn" id="2_rnjyy"]
 [ext_resource type="Texture2D" uid="uid://c1k33513lyjbq" path="res://imagenes/grass_pixelart.png" id="3_4vge2"]
 [ext_resource type="Script" uid="uid://dyvy3fugq1mol" path="res://scripts/progress_bar.gd" id="4_4vge2"]
 [ext_resource type="Script" uid="uid://sw1usow83csy" path="res://scenes/progress_bar_jefe.gd" id="5_04qyp"]
 
 [node name="Node2D" type="Node2D" unique_id=379558289]
+script = ExtResource("1_j7wrs")
 
 [node name="Enemigo" parent="." unique_id=565316729 instance=ExtResource("1_6e84v")]
 position = Vector2(983, 203)
@@ -21,12 +23,23 @@ offset_bottom = 1132.0
 texture = ExtResource("3_4vge2")
 stretch_mode = 1
 
-[node name="ProgressBarJugador" type="ProgressBar" parent="." unique_id=1083866504 groups=["barra_vida"]]
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1966933749]
+position = Vector2(952, 530)
+scale = Vector2(3, 3)
+limit_left = 0
+limit_top = 0
+limit_right = 2000
+limit_bottom = 1143
+position_smoothing_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1279787751]
+
+[node name="ProgressBarJugador" type="ProgressBar" parent="CanvasLayer" unique_id=1083866504 groups=["barra_vida"]]
 offset_right = 152.0
 offset_bottom = 65.0
 script = ExtResource("4_4vge2")
 
-[node name="ProgressBarJefe" type="ProgressBar" parent="." unique_id=561758701 groups=["barra_enemigo"]]
+[node name="ProgressBarJefe" type="ProgressBar" parent="CanvasLayer" unique_id=561758701 groups=["barra_enemigo"]]
 offset_left = -2.0
 offset_top = 66.0
 offset_right = 155.0
