@@ -1,9 +1,2 @@
-res://scenes/bullet.tscn
-res://scripts/bullet.gd
-res://scripts/enemigo.gd
-res://scripts/jugador.gd
-res://scripts/bullet_jugador.gd
-res://scenes/bullet_jugador.tscn
 res://scenes/node_2d.tscn
-res://scenes/progress_bar_jefe.gd
-res://scripts/progress_bar.gd
+res://scripts/enemigo.gd

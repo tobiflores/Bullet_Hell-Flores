@@ -14,23 +14,20 @@ script = ExtResource("1_j7wrs")
 position = Vector2(983, 203)
 
 [node name="Jugador" parent="." unique_id=1789770996 instance=ExtResource("2_rnjyy")]
-position = Vector2(171, 520)
+position = Vector2(1000, 571)
 
-[node name="GrassPixelart" type="TextureRect" parent="." unique_id=1261726018]
-z_index = -2
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1415761716]
+z_index = -10
 offset_right = 2057.0
 offset_bottom = 1132.0
 texture = ExtResource("3_4vge2")
 stretch_mode = 1
 
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1966933749]
-position = Vector2(952, 530)
-scale = Vector2(3, 3)
+[node name="Camera2D" type="Camera2D" parent="." unique_id=406595662]
 limit_left = 0
 limit_top = 0
-limit_right = 2000
-limit_bottom = 1143
-position_smoothing_enabled = true
+limit_right = 2057
+limit_bottom = 1132
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1279787751]
 

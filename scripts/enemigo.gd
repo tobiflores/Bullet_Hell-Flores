@@ -1,11 +1,14 @@
 extends CharacterBody2D
+
 const BULLET_SCENE = preload("res://scenes/bullet.tscn")
 const TORRETA_SCENE = preload("res://scenes/torreta.tscn")
+
 const MOVE_SPEED = 90.0
 const SHOOT_INTERVAL = 0.3
 const FAN_BULLETS = 7
 const FAN_SPREAD = 60.0
-const MAX_LASERS = 25
+const MAX_LASERS = 15
+
 var shoot_timer = 0.0
 var theta: float = 0.0
 var tipoDeBala: int = 0
@@ -32,36 +35,72 @@ func _ready():
 		barritaEnemigo.max_value = 500
 		barritaEnemigo.value = vida
 
-	if tipoDeBala == 1 and not torreta_spawneada:
-		spawnear_torreta(Vector2(300, 300))
-		torreta_spawneada = true
-
 func _physics_process(delta):
 	print(tipoDeBala)
-	if jugador:
-		var dir = position.direction_to(jugador.position)
-		velocity = dir * MOVE_SPEED
-		move_and_slide()
+	if not is_instance_valid(jugador):
+		return
+
+	var dir = position.direction_to(jugador.global_position)
+	velocity = dir * MOVE_SPEED
+	move_and_slide()
+
 	shoot_timer += delta
 	if !dispare:
 		dispare = true
 		$AnimationPlayer.play("disparar")
+
+	if tipoDeBala == 1 and not torreta_spawneada:
+		spawnear_torretas()
+		torreta_spawneada = true
 
 func obtener_vector(angle):
 	theta = angle
 	return Vector2(cos(theta), sin(theta))
 
 func shoot_fan():
-	if not jugador:
+	if not is_instance_valid(jugador):
 		return
+
+	if tipoDeBala == 1:
+		if not enfriamiento_circulo:
+			disparar_circulo()
+		shoot_timer += 1
+		if shoot_timer >= 30:
+			tipoDeBala = 2
+			shoot_timer = 0
+		return
+
+	if balas_disparadas >= MAX_LASERS:
+		if tipoDeBala == 0:
+			tipoDeBala = 1
+		elif tipoDeBala == 1:
+			tipoDeBala = 2
+		balas_disparadas = 0
+		return
+
 	if balas_disparadas >= MAX_LASERS:
 		tipoDeBala = 1
 		balas_disparadas = 0
 		return
+
 	if tipoDeBala == 1:
 		if not enfriamiento_circulo:
 			disparar_circulo()
 		return
+
+	if tipoDeBala == 2:
+		var bala = BULLET_SCENE.instantiate()
+		add_child(bala)
+		var spawn = $Marker2D
+		bala.global_position = spawn.global_position
+		
+		var dir = spawn.global_position.direction_to(jugador.global_position)
+		bala.direction = dir
+		
+		bala.tipoDeDisparo = 2
+		bala.set_property(2)
+		return
+
 	balas_disparadas += 1
 	var bala = BULLET_SCENE.instantiate()
 	add_child(bala)
@@ -86,10 +125,19 @@ func disparar_circulo():
 	await get_tree().create_timer(0.7).timeout
 	enfriamiento_circulo = false
 
-func spawnear_torreta(pos):
-	var t = TORRETA_SCENE.instantiate()
-	t.global_position = pos
-	get_tree().current_scene.add_child(t)
+func spawnear_torretas():
+	var esquinas = [
+		Vector2(200, 200),
+		Vector2(1800, 200),
+		Vector2(200, 1000),
+		Vector2(1800, 1000)
+	]
+
+	for e in esquinas:
+		var t = TORRETA_SCENE.instantiate()
+		t.global_position = global_position
+		t.destino = e
+		get_tree().current_scene.add_child(t)
 
 func _on_animation_player_animation_finished(anim_name: StringName) -> void:
 	if anim_name == "disparar":

@@ -26,5 +26,8 @@ func _on_body_entered(body):
 		body.set_status(tipoDeDisparo)
 		queue_free()
 
+func _ready():
+	add_to_group("balas")
+
 func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free()

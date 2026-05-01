@@ -11,13 +11,17 @@ var vida = 100:
 		if barrita:
 			barrita.value = vida
 		if vida <= 0:
+			get_tree().call_group("balas", "queue_free")
+			get_tree().paused = true
 			queue_free()
+
 func _ready():
 	add_to_group("jugadores")
 	barrita = get_tree().get_first_node_in_group("barra_vida")
 	if barrita:
 		barrita.value = vida
 	enemigo = get_tree().get_first_node_in_group("enemigos")
+	
 func _physics_process(_delta):
 	if not barrita:
 		barrita = get_tree().get_first_node_in_group("barra_vida")
@@ -34,8 +38,9 @@ func _physics_process(_delta):
 		if cuerpo.is_in_group("enemigos") and not invencible:
 			recibir_daño_contacto()
 	disparar()
+
 func disparar():
-	if not enemigo or not puede_disparar:
+	if not is_instance_valid(enemigo) or not puede_disparar:
 		return
 	puede_disparar = false
 	var bala = BALA_JUGADOR.instantiate()
@@ -44,6 +49,7 @@ func disparar():
 	bala.direction = global_position.direction_to(enemigo.global_position)
 	await get_tree().create_timer(1.0).timeout
 	puede_disparar = true
+
 func recibir_daño_contacto():
 	invencible = true
 	vida -= 20
@@ -57,8 +63,7 @@ func set_status(disparo):
 			veneno()
 		2:
 			ralentizar()
-		3:
-			paralizar()
+
 func laser():
 	vida -= 10
 func veneno():
@@ -66,8 +71,7 @@ func veneno():
 		vida -= 2
 		await get_tree().create_timer(1).timeout
 func ralentizar():
-	current_speed = 50
-func paralizar():
-	current_speed = 0
-	await get_tree().create_timer(2.5).timeout
+	vida -= 5
+	current_speed = 100
+	await get_tree().create_timer(2.0).timeout
 	current_speed = 150.0
